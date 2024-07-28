@@ -15,7 +15,6 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.CEP).HasColumnType("CHAR(8)").IsRequired();
         builder.Property(x => x.Estado).HasColumnType("CHAR(2)").IsRequired();
         builder.Property(x => x.Cidade).HasMaxLength(60).IsRequired();
-        builder.Property(x => x.Email);
             
         builder.HasIndex(x => x.Telefone).HasName("idx_cliente_telefone");
     }
