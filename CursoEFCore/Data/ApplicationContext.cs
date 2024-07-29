@@ -18,8 +18,14 @@ public class ApplicationContext : DbContext
             .UseLoggerFactory(_logger)
             .EnableSensitiveDataLogging()
             .UseLazyLoadingProxies()
+            // configurado string de conexão, resiliencia de conexão, nome da tabela de migração e o schema dela
             .UseSqlServer("Server = localhost,1433; Database = entityIntro; User Id = sa; " +
-                                    "Password=SqlServer!@#; TrustServerCertificate = True;");
+                          "Password=SqlServer!@#; TrustServerCertificate = True;", 
+                x => x.EnableRetryOnFailure(
+                    maxRetryCount: 2, 
+                    maxRetryDelay: TimeSpan.FromSeconds(5), 
+                    errorNumbersToAdd: null)
+                    .MigrationsHistoryTable("migracoes_curso_ef_core"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
