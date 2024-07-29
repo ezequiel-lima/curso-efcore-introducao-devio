@@ -19,7 +19,7 @@ public class ApplicationContext : DbContext
             .EnableSensitiveDataLogging()
             .UseLazyLoadingProxies()
             .UseSqlServer("Server = localhost,1433; Database = entityIntro; User Id = sa; " +
-                                    "Password=Quiel3386; TrustServerCertificate = True;");
+                                    "Password=SqlServer!@#; TrustServerCertificate = True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
